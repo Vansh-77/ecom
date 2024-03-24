@@ -15,7 +15,12 @@ class _HomepageState extends State<Homepage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: Text("this is the homepage"),
+            child: Text(
+              "this is the homepage",
+              style: TextStyle(
+                fontSize: 50,
+              ),
+            ),
           ),
         ],
       ),

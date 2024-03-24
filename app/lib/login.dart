@@ -121,7 +121,10 @@ class _LoginpageState extends State<Loginpage> {
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold)),
                             GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  print(
+                                      "you clicked on create one but it is not working yet");
+                                },
                                 child: const Text(
                                   "create one",
                                   style: TextStyle(
@@ -135,6 +138,7 @@ class _LoginpageState extends State<Loginpage> {
                       SizedBox(height: height * 0.06),
                       GestureDetector(
                         onTap: () async {
+                          print("you clicked on login");
                           setState(() {
                             changestyle = true;
                           });
