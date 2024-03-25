@@ -10,19 +10,198 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: Text(
-              "this is the homepage",
-              style: TextStyle(
-                fontSize: 50,
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    return Scaffold(
+      backgroundColor: const Color.fromRGBO(2, 2, 45, 1),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 45,
+            ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Icon(
+                  Icons.menu,
+                  color: Colors.white,
+                ),
+                Text(
+                  "Shopink",
+                  style: TextStyle(fontSize: 25, color: Colors.white),
+                ),
+                Icon(
+                  Icons.notifications,
+                  color: Colors.white,
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Stack(
+              children: [
+                Center(
+                  child: Container(
+                    constraints: BoxConstraints(
+                        maxWidth: width * 0.90, maxHeight: width * 0.40),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20)),
+                  ),
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(top: 10),
+                      child: Text(
+                        " Get your \n special sale\n up to 50%",
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          color: Colors.amber,
+                          borderRadius: BorderRadius.circular(20)),
+                      child: const Text(
+                        "Shop now",
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "New Arrival",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30,
+                    ),
+                  ),
+                  Text(
+                    "see all",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                ],
               ),
             ),
+            Container(
+              padding: EdgeInsets.only(left: width * 0.04),
+              constraints: BoxConstraints(
+                maxHeight: height * 0.25,
+              ),
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 10,
+                  itemBuilder: (context, i) {
+                    return Card(
+                        color: Colors.white,
+                        child: Stack(
+                          children: [
+                            SizedBox(
+                              width: width * 0.45,
+                            ),
+                          ],
+                        ));
+                  }),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Best sellers",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30,
+                    ),
+                  ),
+                  Text(
+                    "see all",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(left: width * 0.04),
+              constraints: BoxConstraints(
+                maxHeight: height * 0.25,
+              ),
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 10,
+                  itemBuilder: (context, i) {
+                    return Card(
+                        color: Colors.white,
+                        child: Stack(
+                          children: [
+                            SizedBox(
+                              width: width * 0.45,
+                            ),
+                          ],
+                        ));
+                  }),
+            ),
+            const SizedBox(
+              height: 10,
+            )
+          ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30), color: Colors.amber),
+          height: height * 0.06,
+          child: const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Icon(
+                Icons.home_filled,
+              ),
+              Icon(
+                Icons.shopping_bag_outlined,
+              ),
+              Icon(
+                Icons.thumb_up_outlined,
+              ),
+              Icon(
+                Icons.person_3_outlined,
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
