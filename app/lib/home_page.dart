@@ -111,14 +111,15 @@ class _HomepageState extends State<Homepage> {
                   Text(
                     "New Arrival",
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.amber,
                       fontSize: 30,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
                     "see all",
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.grey,
                       fontSize: 20,
                     ),
                   ),
@@ -135,12 +136,20 @@ class _HomepageState extends State<Homepage> {
                   itemCount: 10,
                   itemBuilder: (context, i) {
                     return Card(
-                        color: Colors.white,
+                        color: Colors.grey,
                         child: Stack(
                           children: [
                             SizedBox(
                               width: width * 0.45,
                             ),
+                            Products.products.isEmpty
+                                ? const CircularProgressIndicator()
+                                : ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image.network(
+                                      Products.products[i].image,
+                                    ),
+                                  ),
                           ],
                         ));
                   }),
@@ -156,14 +165,15 @@ class _HomepageState extends State<Homepage> {
                   Text(
                     "Best sellers",
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.amber,
                       fontSize: 30,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
                     "see all",
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.grey,
                       fontSize: 20,
                     ),
                   ),
@@ -180,12 +190,20 @@ class _HomepageState extends State<Homepage> {
                   itemCount: 10,
                   itemBuilder: (context, i) {
                     return Card(
-                        color: Colors.white,
+                        color: Colors.grey,
                         child: Stack(
                           children: [
                             SizedBox(
                               width: width * 0.45,
                             ),
+                            Products.products.isEmpty
+                                ? const CircularProgressIndicator()
+                                : ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image.network(
+                                      Products.products[i + 10].image,
+                                    ),
+                                  ),
                           ],
                         ));
                   }),
@@ -200,7 +218,8 @@ class _HomepageState extends State<Homepage> {
         padding: const EdgeInsets.all(10.0),
         child: Container(
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30), color: Colors.amber),
+              borderRadius: BorderRadius.circular(30),
+              color: Colors.amber[500]),
           height: height * 0.06,
           child: const Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
