@@ -1,4 +1,8 @@
+import 'dart:convert';
+
+import 'package:app/model/products.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -8,6 +12,20 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  loadData() async {
+    var data = await rootBundle.loadString("data.json");
+    List<dynamic> jsons = jsonDecode(data);
+    List<prod> products = getproducts(jsons);
+    Products.products = products;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
