@@ -129,7 +129,7 @@ class _HomepageState extends State<Homepage> {
             Container(
               padding: EdgeInsets.only(left: width * 0.04),
               constraints: BoxConstraints(
-                maxHeight: height * 0.25,
+                maxHeight: height * 0.3,
               ),
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -137,26 +137,54 @@ class _HomepageState extends State<Homepage> {
                   itemBuilder: (context, i) {
                     return Card(
                       color: Colors.white,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Products.products.isEmpty
-                              ? const Center(child: CircularProgressIndicator())
-                              : ClipRRect(
+                      child: Products.products.isEmpty
+                          ? const Center(child: CircularProgressIndicator())
+                          : Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                ClipRRect(
                                   borderRadius: BorderRadius.circular(12),
                                   child: Image.network(
                                     Products.products[i].image,
-                                    width: width * 0.4,
+                                    width: width * 0.5,
+                                    height: height * 0.17,
+                                    fit: BoxFit.fitWidth,
                                   ),
                                 ),
-                          Text(
-                            Products.products[i].name,
-                            style: TextStyle(
-                              fontSize: 15,
+                                SizedBox(
+                                  width: width * 0.45,
+                                  height: height * 0.05,
+                                  child: Text(
+                                    Products.products[i].name,
+                                    style: const TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: height * 0.06,
+                                  width: width * 0.45,
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      SizedBox(
+                                        child: Text(
+                                          "\$${Products.products[i].price}",
+                                          style: const TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      const Icon(Icons.thumb_up_outlined)
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
-                          )
-                        ],
-                      ),
                     );
                   }),
             ),
@@ -189,30 +217,62 @@ class _HomepageState extends State<Homepage> {
             Container(
               padding: EdgeInsets.only(left: width * 0.04),
               constraints: BoxConstraints(
-                maxHeight: height * 0.25,
+                maxHeight: height * 0.3,
               ),
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: 10,
                   itemBuilder: (context, i) {
                     return Card(
-                        color: Colors.grey,
-                        child: Stack(
-                          children: [
-                            SizedBox(
-                              width: width * 0.45,
-                            ),
-                            Products.products.isEmpty
-                                ? const Center(
-                                    child: CircularProgressIndicator())
-                                : ClipRRect(
-                                    borderRadius: BorderRadius.circular(12),
-                                    child: Image.network(
-                                      Products.products[i + 10].image,
-                                    ),
+                      color: Colors.white,
+                      child: Products.products.isEmpty
+                          ? const Center(child: CircularProgressIndicator())
+                          : Column(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.network(
+                                    Products.products[i + 10].image,
+                                    width: width * 0.5,
+                                    height: height * 0.17,
+                                    fit: BoxFit.fitWidth,
                                   ),
-                          ],
-                        ));
+                                ),
+                                SizedBox(
+                                  width: width * 0.45,
+                                  height: height * 0.05,
+                                  child: Text(
+                                    Products.products[i + 10].name,
+                                    style: const TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: height * 0.06,
+                                  width: width * 0.45,
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      SizedBox(
+                                        child: Text(
+                                          "\$${Products.products[i + 10].price}",
+                                          style: const TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      const Icon(Icons.thumb_up_outlined)
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                    );
                   }),
             ),
             const SizedBox(
