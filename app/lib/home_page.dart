@@ -28,6 +28,7 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
+    Color blue_color = const Color.fromARGB(255, 2, 200, 255);
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -65,7 +66,7 @@ class _HomepageState extends State<Homepage> {
                     constraints: BoxConstraints(
                         maxWidth: width * 0.90, maxHeight: width * 0.40),
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: blue_color,
                         borderRadius: BorderRadius.circular(20)),
                   ),
                 ),
