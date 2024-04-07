@@ -136,22 +136,28 @@ class _HomepageState extends State<Homepage> {
                   itemCount: 10,
                   itemBuilder: (context, i) {
                     return Card(
-                        color: Colors.grey,
-                        child: Stack(
-                          children: [
-                            SizedBox(
-                              width: width * 0.45,
-                            ),
-                            Products.products.isEmpty
-                                ? const CircularProgressIndicator()
-                                : ClipRRect(
-                                    borderRadius: BorderRadius.circular(12),
-                                    child: Image.network(
-                                      Products.products[i].image,
-                                    ),
+                      color: Colors.white,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Products.products.isEmpty
+                              ? const Center(child: CircularProgressIndicator())
+                              : ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.network(
+                                    Products.products[i].image,
+                                    width: width * 0.4,
                                   ),
-                          ],
-                        ));
+                                ),
+                          Text(
+                            Products.products[i].name,
+                            style: TextStyle(
+                              fontSize: 15,
+                            ),
+                          )
+                        ],
+                      ),
+                    );
                   }),
             ),
             const SizedBox(
@@ -197,7 +203,8 @@ class _HomepageState extends State<Homepage> {
                               width: width * 0.45,
                             ),
                             Products.products.isEmpty
-                                ? const CircularProgressIndicator()
+                                ? const Center(
+                                    child: CircularProgressIndicator())
                                 : ClipRRect(
                                     borderRadius: BorderRadius.circular(12),
                                     child: Image.network(
