@@ -1,6 +1,8 @@
 import 'dart:convert';
-
+import 'package:app/widgits/appbar.dart';
 import 'package:app/model/products.dart';
+import 'package:app/widgits/card.dart';
+import 'package:app/widgits/navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -28,7 +30,7 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
-    Color blue_color = const Color.fromARGB(255, 2, 200, 255);
+    const Color blueColor = Color.fromARGB(255, 2, 200, 255);
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -39,23 +41,7 @@ class _HomepageState extends State<Homepage> {
             const SizedBox(
               height: 45,
             ),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Icon(
-                  Icons.menu,
-                  color: Colors.white,
-                ),
-                Text(
-                  "Shopink",
-                  style: TextStyle(fontSize: 25, color: Colors.white),
-                ),
-                Icon(
-                  Icons.notifications,
-                  color: Colors.white,
-                )
-              ],
-            ),
+            const App_bar(),
             const SizedBox(
               height: 20,
             ),
@@ -66,7 +52,7 @@ class _HomepageState extends State<Homepage> {
                     constraints: BoxConstraints(
                         maxWidth: width * 0.90, maxHeight: width * 0.40),
                     decoration: BoxDecoration(
-                        color: blue_color,
+                        color: blueColor,
                         borderRadius: BorderRadius.circular(20)),
                   ),
                 ),
@@ -136,57 +122,7 @@ class _HomepageState extends State<Homepage> {
                   scrollDirection: Axis.horizontal,
                   itemCount: 10,
                   itemBuilder: (context, i) {
-                    return Card(
-                      color: Colors.white,
-                      child: Products.products.isEmpty
-                          ? const Center(child: CircularProgressIndicator())
-                          : Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child: Image.network(
-                                    Products.products[i].image,
-                                    width: width * 0.5,
-                                    height: height * 0.17,
-                                    fit: BoxFit.fitWidth,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: width * 0.45,
-                                  height: height * 0.05,
-                                  child: Text(
-                                    Products.products[i].name,
-                                    style: const TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: height * 0.06,
-                                  width: width * 0.45,
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      SizedBox(
-                                        child: Text(
-                                          "\$${Products.products[i].price}",
-                                          style: const TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      const Icon(Icons.thumb_up_outlined)
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                    );
+                    return Cardview(i: i);
                   }),
             ),
             const SizedBox(
@@ -224,56 +160,7 @@ class _HomepageState extends State<Homepage> {
                   scrollDirection: Axis.horizontal,
                   itemCount: 10,
                   itemBuilder: (context, i) {
-                    return Card(
-                      color: Colors.white,
-                      child: Products.products.isEmpty
-                          ? const Center(child: CircularProgressIndicator())
-                          : Column(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child: Image.network(
-                                    Products.products[i + 10].image,
-                                    width: width * 0.5,
-                                    height: height * 0.17,
-                                    fit: BoxFit.fitWidth,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: width * 0.45,
-                                  height: height * 0.05,
-                                  child: Text(
-                                    Products.products[i + 10].name,
-                                    style: const TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: height * 0.06,
-                                  width: width * 0.45,
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      SizedBox(
-                                        child: Text(
-                                          "\$${Products.products[i + 10].price}",
-                                          style: const TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      const Icon(Icons.thumb_up_outlined)
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                    );
+                    return Cardview(i: i + 10);
                   }),
             ),
             const SizedBox(
@@ -282,32 +169,7 @@ class _HomepageState extends State<Homepage> {
           ],
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              color: Colors.amber[500]),
-          height: height * 0.06,
-          child: const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Icon(
-                Icons.home_filled,
-              ),
-              Icon(
-                Icons.shopping_bag_outlined,
-              ),
-              Icon(
-                Icons.thumb_up_outlined,
-              ),
-              Icon(
-                Icons.person_3_outlined,
-              ),
-            ],
-          ),
-        ),
-      ),
+      bottomNavigationBar: const Navigation_bar(),
     );
   }
 }
