@@ -62,6 +62,5 @@ class _CardviewState extends State<Cardview> {
               ],
             ),
     );
-    ;
   }
 }
