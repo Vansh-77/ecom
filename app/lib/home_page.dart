@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:app/detail.dart';
 import 'package:app/widgits/appbar.dart';
 import 'package:app/model/products.dart';
 import 'package:app/widgits/card.dart';
@@ -34,7 +35,7 @@ class _HomepageState extends State<Homepage> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(2, 2, 45, 1),
+      //backgroundColor: const Color.fromRGBO(2, 2, 45, 1),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -98,7 +99,6 @@ class _HomepageState extends State<Homepage> {
                   Text(
                     "New Arrival",
                     style: TextStyle(
-                      color: Colors.amber,
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),
@@ -122,7 +122,18 @@ class _HomepageState extends State<Homepage> {
                   scrollDirection: Axis.horizontal,
                   itemCount: 10,
                   itemBuilder: (context, i) {
-                    return Cardview(i: i);
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                Detailpage(item: Products.products[i]),
+                          ),
+                        );
+                      },
+                      child: Cardview(i: i),
+                    );
                   }),
             ),
             const SizedBox(
@@ -136,7 +147,6 @@ class _HomepageState extends State<Homepage> {
                   Text(
                     "Best sellers",
                     style: TextStyle(
-                      color: Colors.amber,
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),

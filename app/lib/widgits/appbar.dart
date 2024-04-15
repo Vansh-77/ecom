@@ -10,15 +10,16 @@ class App_bar extends StatelessWidget {
       children: [
         Icon(
           Icons.menu,
-          color: Colors.white,
         ),
-        Text(
-          "Shopink",
-          style: TextStyle(fontSize: 25, color: Colors.white),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 50.0),
+          child: Text(
+            "Shopink",
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          ),
         ),
         Icon(
           Icons.notifications,
-          color: Colors.white,
         )
       ],
     );
