@@ -1,6 +1,5 @@
 import 'package:app/model/products.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class Detailpage extends StatefulWidget {
   final prod item;
