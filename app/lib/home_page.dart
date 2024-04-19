@@ -25,6 +25,7 @@ class _HomepageState extends State<Homepage> {
     var data = await rootBundle.loadString("data.json");
     List<dynamic> jsons = jsonDecode(data);
     List<prod> products = getproducts(jsons);
+    products.shuffle();
     Products.products = products;
     setState(() {});
   }
@@ -115,11 +116,14 @@ class _HomepageState extends State<Homepage> {
             ),
             Container(
               padding: EdgeInsets.only(left: width * 0.04),
-              constraints: BoxConstraints(
-                maxHeight: height * 0.3,
-              ),
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
+              child: GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.75,
+                  ),
+                  scrollDirection: Axis.vertical,
                   itemCount: 10,
                   itemBuilder: (context, i) {
                     return GestureDetector(
@@ -168,9 +172,20 @@ class _HomepageState extends State<Homepage> {
               ),
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 10,
+                  itemCount: 20,
                   itemBuilder: (context, i) {
-                    return Cardview(i: i + 10);
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                Detailpage(item: Products.products[i + 10]),
+                          ),
+                        );
+                      },
+                      child: Cardview(i: i + 10),
+                    );
                   }),
             ),
             const SizedBox(

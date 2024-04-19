@@ -34,8 +34,12 @@ def showcart():
         return {"message":"query executed successfully","response":d}
     except:
         return {"message":"error connecting to the server","response":None} 
-  
+@app.route("/login" , methods = ["POST"])
+def login():
+    data = request.json
+    
+    return {}
 
 if __name__ == "__main__":
-    app.run(host="192.168.1.5",port=80)
+    app.run(host="localhost")
 

@@ -4,20 +4,24 @@ class prod {
   final num price;
   final String image;
   final num rating;
+  final String desc;
   prod({
     required this.id,
     required this.name,
     required this.price,
     required this.image,
     required this.rating,
+    required this.desc,
   });
   factory prod.fromJson(Map<String, dynamic> json) {
     return prod(
-        id: json["id"],
-        name: json["name"],
-        price: json["price"],
-        image: json["image"],
-        rating: json["rating"]["rate"]);
+      id: json["id"],
+      name: json["name"],
+      price: json["price"],
+      image: json["image"],
+      rating: json["rating"]["rate"],
+      desc: json["description"],
+    );
   }
 }
 
