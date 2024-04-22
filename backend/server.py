@@ -13,11 +13,12 @@ def add_to_cart():
     try :
         connection = sqlc.connect(host = "localhost",user= "vansh",password = "root",database = "ecommerce")  
         cursor = connection.cursor()
-        cursor.execute(f"insert into cart values({data['user_id']} , {data['product_id']})")
-        cursor.execute(f"select * from cart where user_id = {data['user_id']}")
-        d = cursor.fetchall()
+        cursor.execute(f"insert into cart values({data['user_id']} , {data['product_id']},{data['quantity']})")
         connection.commit()
-        return {"message":"product added to the cart","response":d}
+        # cursor.execute(f"select * from cart where user_id = {data['user_id']}")
+        # d = cursor.fetchall()
+        # connection.commit()
+        return {"message":"product added to the cart","response":data["product_id"]}
     except:
         return {"message":"error connecting to the server","response":None} 
        

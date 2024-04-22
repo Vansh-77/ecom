@@ -1,5 +1,9 @@
+import 'dart:convert';
+
+import 'package:app/cartpage.dart';
 import 'package:app/model/products.dart';
 import 'package:flutter/material.dart';
+import "package:http/http.dart";
 
 class Detailpage extends StatefulWidget {
   final prod item;
@@ -12,6 +16,15 @@ class Detailpage extends StatefulWidget {
 int count = 1;
 
 class _DetailpageState extends State<Detailpage> {
+  void add_to_cart() async {
+    var url = Uri.http("192.168.1.8", "add_to_cart");
+    var body =
+        jsonEncode({"user_id": 1, "product_id": widget.item.id, "quantity": 1});
+    var response = await post(url,
+        headers: {"Content-Type": "application/json"}, body: body);
+    print(response.body);
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -46,9 +59,13 @@ class _DetailpageState extends State<Detailpage> {
                   ),
                 ),
                 GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const Cart()));
+                  },
                   child: const Icon(
-                    Icons.menu,
-                    color: Colors.grey,
+                    Icons.shopping_bag,
+                    color: Colors.black,
                   ),
                 ),
               ],
@@ -207,7 +224,9 @@ class _DetailpageState extends State<Detailpage> {
               ),
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                add_to_cart();
+              },
               child: Container(
                 margin: const EdgeInsets.only(right: 28),
                 height: 45,
