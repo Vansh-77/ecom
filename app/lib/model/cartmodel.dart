@@ -1,30 +1,30 @@
 import 'package:app/model/products.dart';
 
-class Cart {
+class CartItem {
   final int count;
   final prod pd;
-  Cart({required this.count, required this.pd});
-  factory Cart.fromJson(Map<String, dynamic> json) {
+  CartItem({required this.count, required this.pd});
+  factory CartItem.fromList(List<dynamic> list) {
     late prod item;
     List<prod> l = Products.products;
     for (int i = 0; i < l.length; i++) {
-      if (l[i].id == json["prodid"]) {
+      if (l[i].id == list[1]) {
         item = l[i];
         break;
       }
     }
-    return Cart(count: json["quantity"], pd:item);
+    return CartItem(count: list[2], pd: item);
   }
 }
 
-List<Cart> getCart(List cartitems) {
-  List<Cart> items = [];
-  for (int i = 0; i < cartitems.length; i++) {
-    items.add(Cart.fromJson(cartitems[i]));
+List<CartItem> getCart(List cartItems) {
+  List<CartItem> items = [];
+  for (int i = 0; i < cartItems.length; i++) {
+    items.add(CartItem.fromList(cartItems[i]));
   }
   return items;
 }
 
-class CartItems {
-  List<Cart> items = [];
+class Items {
+  static List<CartItem> items = [];
 }

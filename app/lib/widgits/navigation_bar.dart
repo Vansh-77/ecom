@@ -1,3 +1,4 @@
+import 'package:app/cartpage.dart';
 import 'package:flutter/material.dart';
 
 class Navigation_bar extends StatelessWidget {
@@ -12,20 +13,35 @@ class Navigation_bar extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30), color: Colors.amber[500]),
         height: height * 0.06,
-        child: const Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Icon(
-              Icons.home_filled,
+            GestureDetector(
+              child: const Icon(
+                Icons.home_filled,
+              ),
             ),
-            Icon(
-              Icons.shopping_bag_outlined,
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Cart(),
+                    ));
+              },
+              child: const Icon(
+                Icons.shopping_bag_outlined,
+              ),
             ),
-            Icon(
-              Icons.thumb_up_outlined,
+            GestureDetector(
+              child: const Icon(
+                Icons.thumb_up_outlined,
+              ),
             ),
-            Icon(
-              Icons.person_3_outlined,
+            GestureDetector(
+              child: const Icon(
+                Icons.person_3_outlined,
+              ),
             ),
           ],
         ),

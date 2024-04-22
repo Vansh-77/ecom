@@ -41,5 +41,5 @@ def login():
     return {}
 
 if __name__ == "__main__":
-    app.run(host="localhost")
+    app.run(host="192.168.1.8",port=80)
 
