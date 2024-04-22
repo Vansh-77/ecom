@@ -9,6 +9,8 @@ class Detailpage extends StatefulWidget {
   State<Detailpage> createState() => _DetailpageState();
 }
 
+int count = 1;
+
 class _DetailpageState extends State<Detailpage> {
   @override
   Widget build(BuildContext context) {
@@ -46,6 +48,7 @@ class _DetailpageState extends State<Detailpage> {
                 GestureDetector(
                   child: const Icon(
                     Icons.menu,
+                    color: Colors.grey,
                   ),
                 ),
               ],
@@ -111,7 +114,7 @@ class _DetailpageState extends State<Detailpage> {
                         padding: const EdgeInsets.all(18),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
-                            color: Color.fromARGB(255, 209, 204, 204)),
+                            color: const Color.fromARGB(255, 209, 204, 204)),
                         child: const Icon(Icons.thumb_up_alt_outlined),
                       )
                     ],
@@ -140,7 +143,6 @@ class _DetailpageState extends State<Detailpage> {
             Container(
               margin: const EdgeInsets.only(left: 20),
               height: 37,
-              width: 90,
               decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 201, 201, 201),
                 borderRadius: BorderRadius.circular(40),
@@ -148,55 +150,81 @@ class _DetailpageState extends State<Detailpage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        if (count != 1) {
+                          count--;
+                        }
+                      });
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black, width: 1),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20)),
+                      width: 35,
+                      height: 35,
+                      child: const Center(
+                          child: Text(
+                        "-",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w900),
+                      )),
+                    ),
+                  ),
                   Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black, width: 1),
+                    padding: const EdgeInsets.all(5),
+                    child: Center(
+                      child: Text(
+                        "$count",
+                        style: const TextStyle(fontSize: 18),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        if (count != 50) {
+                          count++;
+                        }
+                      });
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black, width: 1),
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(20)),
+                      width: 35,
+                      height: 35,
+                      child: const Icon(
+                        Icons.add,
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(20)),
-                    width: 35,
-                    height: 35,
-                    child: const Center(
-                        child: Text(
-                      "-",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
-                    )),
-                  ),
-                  const Text(
-                    "1",
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black, width: 1),
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(20)),
-                    width: 35,
-                    height: 35,
-                    child: const Icon(
-                      Icons.add,
-                      color: Colors.white,
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
-            Container(
-              margin: const EdgeInsets.only(right: 28),
-              height: 45,
-              width: 200,
-              decoration: BoxDecoration(
-                color: Colors.amber,
-                borderRadius: BorderRadius.circular(45),
-              ),
-              child: const Center(
-                  child: Text(
-                "Add To Cart",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w900,
+            GestureDetector(
+              onTap: () {},
+              child: Container(
+                margin: const EdgeInsets.only(right: 28),
+                height: 45,
+                width: 200,
+                decoration: BoxDecoration(
+                  color: Colors.amber,
+                  borderRadius: BorderRadius.circular(45),
                 ),
-              )),
+                child: const Center(
+                    child: Text(
+                  "Add To Cart",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w900,
+                  ),
+                )),
+              ),
             )
           ],
         ),
